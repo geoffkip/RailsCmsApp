@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-layout 'admin'
+  layout 'admin'
 
   def index
     @pages = Page.sorted

@@ -1147,3 +1147,141 @@ SyntaxError (/Users/geoffrey.kip/Sites/simple_cms/app/helpers/application_helper
 app/helpers/application_helper.rb:4: syntax error, unexpected '='
 app/controllers/application_controller.rb:1:in `<top (required)>'
 app/controllers/subjects_controller.rb:1:in `<top (required)>'
+Started GET "/subjects" for 127.0.0.1 at 2017-06-06 20:47:38 -0400
+  [1m[35m (28.2ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  
+SyntaxError (/Users/geoffrey.kip/Sites/simple_cms/app/helpers/application_helper.rb:4: syntax error, unexpected '='
+  options[:true_text]  || = ''
+                           ^):
+  
+app/helpers/application_helper.rb:4: syntax error, unexpected '='
+app/controllers/application_controller.rb:1:in `<top (required)>'
+app/controllers/subjects_controller.rb:1:in `<top (required)>'
+Started GET "/subjects" for 127.0.0.1 at 2017-06-06 20:49:17 -0400
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by SubjectsController#index as HTML
+  Rendering subjects/index.html.erb within layouts/admin
+  [1m[36mSubject Load (25.4ms)[0m  [1m[34mSELECT `subjects`.* FROM `subjects` ORDER BY position ASC[0m
+  [1m[35m (21.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `pages` WHERE `pages`.`subject_id` = 9[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `pages` WHERE `pages`.`subject_id` = 1[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `pages` WHERE `pages`.`subject_id` = 2[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `pages` WHERE `pages`.`subject_id` = 4[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `pages` WHERE `pages`.`subject_id` = 13[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `pages` WHERE `pages`.`subject_id` = 14[0m
+  Rendered subjects/index.html.erb within layouts/admin (116.6ms)
+Completed 200 OK in 144ms (Views: 67.2ms | ActiveRecord: 58.9ms)
+
+
+Started GET "/demo/escape_output" for 127.0.0.1 at 2017-06-06 20:49:55 -0400
+Processing by DemoController#escape_output as HTML
+  Rendering demo/escape_output.html.erb
+  Rendered demo/escape_output.html.erb (0.6ms)
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/demo/escape_output" for 127.0.0.1 at 2017-06-06 20:51:06 -0400
+Processing by DemoController#escape_output as HTML
+  Rendering demo/escape_output.html.erb
+  Rendered demo/escape_output.html.erb (0.5ms)
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/demo/escape_output" for 127.0.0.1 at 2017-06-06 20:51:08 -0400
+Processing by DemoController#escape_output as HTML
+  Rendering demo/escape_output.html.erb
+  Rendered demo/escape_output.html.erb (0.4ms)
+Completed 200 OK in 4ms (Views: 1.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/demo/escape_output" for 127.0.0.1 at 2017-06-06 20:51:25 -0400
+Processing by DemoController#escape_output as HTML
+  Rendering demo/escape_output.html.erb
+  Rendered demo/escape_output.html.erb (0.6ms)
+Completed 200 OK in 4ms (Views: 2.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/demo/escape_output" for 127.0.0.1 at 2017-06-06 20:53:13 -0400
+Processing by DemoController#escape_output as HTML
+  Rendering demo/escape_output.html.erb
+  Rendered demo/escape_output.html.erb (0.6ms)
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/demo/escape_output" for 127.0.0.1 at 2017-06-06 20:53:15 -0400
+Processing by DemoController#escape_output as HTML
+  Rendering demo/escape_output.html.erb
+  Rendered demo/escape_output.html.erb (0.5ms)
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/demo/escape_output" for 127.0.0.1 at 2017-06-06 20:53:39 -0400
+Processing by DemoController#escape_output as HTML
+  Rendering demo/escape_output.html.erb
+  Rendered demo/escape_output.html.erb (6.9ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `html' for "<script>alert('Gotcha!');</script>":String):
+    1: <% evil_string = "<script>alert('Gotcha!');</script>" %>
+    2: <% good_string = "<strong>Welcome to my site!</strong>" %>
+    3: 
+    4: <%= h evil_string.html %><br />
+    5: <%= h good_string.html %><br />
+  
+app/views/demo/escape_output.html.erb:4:in `_app_views_demo_escape_output_html_erb__1848932950234827704_70363835224320'
+Started GET "/demo/escape_output" for 127.0.0.1 at 2017-06-06 20:55:06 -0400
+Processing by DemoController#escape_output as HTML
+  Rendering demo/escape_output.html.erb
+  Rendered demo/escape_output.html.erb (3.9ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `html' for "<script>alert('Gotcha!');</script>":String):
+    1: <% evil_string = "<script>alert('Gotcha!');</script>" %>
+    2: <% good_string = "<strong>Welcome to my site!</strong>" %>
+    3: 
+    4: <%= evil_string.html %><br />
+    5: <%= good_string.html %><br />
+  
+app/views/demo/escape_output.html.erb:4:in `_app_views_demo_escape_output_html_erb__1848932950234827704_70363804542340'
+Started GET "/demo/escape_output" for 127.0.0.1 at 2017-06-06 20:55:56 -0400
+Processing by DemoController#escape_output as HTML
+  Rendering demo/escape_output.html.erb
+  Rendered demo/escape_output.html.erb (3.3ms)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `html' for "<script>alert('Gotcha!');</script>":String):
+    1: <% evil_string = "<script>alert('Gotcha!');</script>" %>
+    2: <% good_string = "<strong>Welcome to my site!</strong>" %>
+    3: 
+    4: <%= evil_string.html %><br />
+    5: <%= good_string.html %><br />
+  
+app/views/demo/escape_output.html.erb:4:in `_app_views_demo_escape_output_html_erb__1848932950234827704_70363813607400'
+Started GET "/demo/escape_output" for 127.0.0.1 at 2017-06-06 20:56:15 -0400
+Processing by DemoController#escape_output as HTML
+  Rendering demo/escape_output.html.erb
+  Rendered demo/escape_output.html.erb (0.6ms)
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/demo/escape_output" for 127.0.0.1 at 2017-06-06 20:56:18 -0400
+Processing by DemoController#escape_output as HTML
+  Rendering demo/escape_output.html.erb
+  Rendered demo/escape_output.html.erb (0.5ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/demo/escape_output" for 127.0.0.1 at 2017-06-06 20:56:19 -0400
+Processing by DemoController#escape_output as HTML
+  Rendering demo/escape_output.html.erb
+  Rendered demo/escape_output.html.erb (0.5ms)
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.0ms)
+
+
