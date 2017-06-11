@@ -23,7 +23,7 @@ class AdminUser < ApplicationRecord
   # validates_format_of :email, :with => EMAIL_REGEX
   # validates_confirmation_of :email
 
-  # "sexy" validations
+  # "cool" validations
   validates :first_name, :presence => true,
 												 :length => { :maximum => 25 }
   validates :last_name, :presence => true,
