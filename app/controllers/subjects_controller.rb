@@ -2,6 +2,9 @@ class SubjectsController < ApplicationController
 
   layout 'admin'
 
+  before_action :confirm_logged_in, :except => [:login, :attempt_login, :logout]
+
+
   def index
     logger.debug("***Testing the logger.***")
     @subjects = Subject.sorted
