@@ -5,48 +5,39 @@ class AccessController < ApplicationController
   before_action :confirm_logged_in, :except => [:login, :attempt_login, :logout]
 
   def menu
-    #display text and links
+    # display text & links
+    @username = session[:username]
   end
 
   def login
-    #login form
+    # login form
   end
 
   def attempt_login
     if params[:username].present? && params[:password].present?
       found_user = AdminUser.where(:username => params[:username]).first
-    if found_user
-      authorized_user= found_user.authenticate(params[:password])
+      if found_user
+        authorized_user = found_user.authenticate(params[:password])
+      end
     end
-  end
 
-  if authorized_user
-    session[:user_id]= authorized_user.id
-    flash[:notice]= "You are now logged in."
-    redirect_to(admin_path)
-  else
-    #Make this the current message as if it was the next request coming in
-    flash.now[:notice]= "Invalid username/password combination."
-    render('login')
-  end
+    if authorized_user
+      session[:user_id] = authorized_user.id
+      session[:username] = authorized_user.username
+      flash[:notice] = "You are now logged in."
+      redirect_to(admin_path)
+    else
+      flash.now[:notice] = "Invalid username/password combination."
+      render('login')
+    end
 
-end
+  end
 
   def logout
-    session[:user_id]=nil
-    flash[:notice] = 'Logged Out'
+    session[:user_id] = nil
+    session[:username] = nil
+    flash[:notice] = 'Logged out'
     redirect_to(access_login_path)
-  end
-
-  private
-
-  def confirm_logged_in
-    #if not
-    unless session[:user_id]
-      flash[:notice] = "Please log in."
-      redirect_to(access_login_path)
-      #prevents requested action from running
-    end
   end
 
 end

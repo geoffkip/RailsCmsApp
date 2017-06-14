@@ -1,5 +1,7 @@
 class Subject < ApplicationRecord
 
+  acts_as_list
+
   has_many :pages
 
   scope :visible, lambda { where(:visible => true) }
@@ -10,5 +12,8 @@ class Subject < ApplicationRecord
 
   validates_presence_of :name
   validates_length_of :name, :maximum => 255
+  # validates_presence_of vs. validates_length_of :minimum => 1
+  # different error messages: "can't be blank" or "is too short"
+  # validates_length_of allows strings with only spaces!
 
 end
