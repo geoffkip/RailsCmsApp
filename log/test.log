@@ -1,0 +1,197 @@
+  [1m[35m (27.1ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.6ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (7.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS `simple_cms_test`[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE DATABASE `simple_cms_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (12.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `admin_users` CASCADE[0m
+  [1m[35m (43.5ms)[0m  [1m[35mCREATE TABLE `admin_users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `first_name` varchar(25), `last_name` varchar(50), `email` varchar(100) DEFAULT '' NOT NULL, `username` varchar(25), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `password_digest` varchar(255),  INDEX `index_admin_users_on_username`  (`username`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `admin_users_pages` CASCADE[0m
+  [1m[35m (14.2ms)[0m  [1m[35mCREATE TABLE `admin_users_pages` (`admin_user_id` int, `page_id` int,  INDEX `index_admin_users_pages_on_admin_user_id_and_page_id`  (`admin_user_id`, `page_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS `pages` CASCADE[0m
+  [1m[35m (13.9ms)[0m  [1m[35mCREATE TABLE `pages` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `subject_id` int, `name` varchar(255), `permalink` varchar(255), `position` int, `visible` tinyint(1) DEFAULT 0, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_pages_on_permalink`  (`permalink`),  INDEX `index_pages_on_subject_id`  (`subject_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `section_edits` CASCADE[0m
+  [1m[35m (13.2ms)[0m  [1m[35mCREATE TABLE `section_edits` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `admin_user_id` int, `section_id` int, `summary` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_section_edits_on_admin_user_id_and_section_id`  (`admin_user_id`, `section_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS `sections` CASCADE[0m
+  [1m[35m (19.5ms)[0m  [1m[35mCREATE TABLE `sections` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `page_id` int, `name` varchar(255), `position` int, `visible` tinyint(1) DEFAULT 0, `content_type` varchar(255), `content` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_sections_on_page_id`  (`page_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS `subjects` CASCADE[0m
+  [1m[35m (14.1ms)[0m  [1m[35mCREATE TABLE `subjects` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `position` int, `visible` tinyint(1) DEFAULT 0, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `users` CASCADE[0m
+  [1m[35m (15.1ms)[0m  [1m[35mCREATE TABLE `users` (`id` int NOT NULL AUTO_INCREMENT PRIMARY KEY, `first_name` varchar(25), `last_name` varchar(50), `email` varchar(255) DEFAULT '' NOT NULL, `password` varchar(40), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (12.7ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (28.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20170613150613)[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20170524014454),
+(20170524014920),
+(20170524021434),
+(20170525002040),
+(20170525002044),
+(20170525002101),
+(20170531011113),
+(20170531013323);
+
+[0m
+  [1m[35m (27.1ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'test', '2017-08-18 03:52:59', '2017-08-18 03:52:59')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.8ms)[0m  [1m[31mDELETE FROM `pages`[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:52:59', '2017-08-18 03:52:59', 980190962)[0m
+  [1m[36mFixture Insert (0.9ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:52:59', '2017-08-18 03:52:59', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `section_edits`[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:52:59', '2017-08-18 03:52:59', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:52:59', '2017-08-18 03:52:59', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `sections`[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:52:59', '2017-08-18 03:52:59', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:52:59', '2017-08-18 03:52:59', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `subjects`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:52:59', '2017-08-18 03:52:59', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:52:59', '2017-08-18 03:52:59', 298486374)[0m
+  [1m[36mFixture Delete (1.2ms)[0m  [1m[31mDELETE FROM `users`[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO `users` () VALUES ()[0m
+  [1m[35m (1.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.4ms)[0m  [1m[31mDELETE FROM `pages`[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `section_edits`[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `sections`[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.4ms)[0m  [1m[31mDELETE FROM `subjects`[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.6ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `users`[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO `users` () VALUES ()[0m
+  [1m[35m (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `pages`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `section_edits`[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `sections`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `subjects`[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.6ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `users`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `users` () VALUES ()[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `pages`[0m
+  [1m[36mFixture Insert (0.6ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `section_edits`[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `sections`[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.7ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `subjects`[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `users`[0m
+  [1m[36mFixture Insert (0.6ms)[0m  [1m[32mINSERT INTO `users` () VALUES ()[0m
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `pages`[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `section_edits`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `sections`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `subjects`[0m
+  [1m[36mFixture Insert (0.7ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.7ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `users`[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO `users` () VALUES ()[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.4ms)[0m  [1m[31mDELETE FROM `pages`[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `section_edits`[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.8ms)[0m  [1m[31mDELETE FROM `sections`[0m
+  [1m[36mFixture Insert (0.6ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `subjects`[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.8ms)[0m  [1m[31mDELETE FROM `users`[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO `users` () VALUES ()[0m
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.5ms)[0m  [1m[31mDELETE FROM `pages`[0m
+  [1m[36mFixture Insert (0.6ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `section_edits`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `sections`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.4ms)[0m  [1m[31mDELETE FROM `subjects`[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `users`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `users` () VALUES ()[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `pages`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO `pages` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `section_edits`[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `section_edits` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.4ms)[0m  [1m[31mDELETE FROM `sections`[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.6ms)[0m  [1m[32mINSERT INTO `sections` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `subjects`[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO `subjects` (`created_at`, `updated_at`, `id`) VALUES ('2017-08-18 03:53:00', '2017-08-18 03:53:00', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `users`[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO `users` () VALUES ()[0m
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
